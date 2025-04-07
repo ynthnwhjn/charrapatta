@@ -15,6 +15,8 @@ class CoaController extends Controller
    public function index()
    {
       $items = Mcoa::query()
+         ->with('tree')
+         ->orderBy('kode')
          ->get();
 
       return response()->json([

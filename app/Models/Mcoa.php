@@ -11,4 +11,14 @@ class Mcoa extends Model
 
    protected $table = 'mcoa';
    protected $guarded = [];
+
+   public function children()
+   {
+      return $this->hasMany(Mcoa::class, 'parent_id', 'id');
+   }
+
+   public function tree()
+   {
+      return $this->children()->with('tree');
+   }
 }

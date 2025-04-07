@@ -16,8 +16,7 @@ class CreateMcoaTable extends Migration
       Schema::create('mcoa', function (Blueprint $table) {
          $table->id();
          $table->foreignId('parent_id')->nullable();
-         $table->string('path');
-         $table->string('kode');
+         $table->string('kode')->unique();
          $table->string('nama');
          $table->string('tipe')->nullable();
          $table->timestamps();
