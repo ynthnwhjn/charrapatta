@@ -16,12 +16,17 @@ class CoaController extends Controller
    {
       $items = Mcoa::query()
          ->with('tree')
+         ->whereNull('parent_id')
          ->orderBy('kode')
          ->get();
 
-      return response()->json([
-         'items' => $items,
-      ]);
+      return view('coa.index', compact(
+         'items',
+      ));
+
+      // return response()->json([
+      //    'items' => $items,
+      // ]);
    }
 
    /**
@@ -31,7 +36,11 @@ class CoaController extends Controller
     */
    public function create()
    {
-      //
+      $formfield = new Mcoa();
+
+      return view('coa.form', compact(
+         'formfield',
+      ));
    }
 
    /**
@@ -64,7 +73,12 @@ class CoaController extends Controller
     */
    public function edit($id)
    {
-      //
+      $formfield = Mcoa::query()
+         ->find($id);
+
+      return view('coa.form', compact(
+         'formfield',
+      ));
    }
 
    /**

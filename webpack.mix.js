@@ -11,7 +11,17 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.webpackConfig(webpack => {
+   return {
+      plugins: [new webpack.ProvidePlugin({
+         $: 'jquery',
+         jQuery: 'jquery',
+         'window.jQuery': 'jquery'
+      })]
+   };
+});
+
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+   .postCss('resources/css/app.css', 'public/css', [
+      //
+   ]);
